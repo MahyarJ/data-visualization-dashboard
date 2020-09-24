@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './GrowthViewer.module.sass';
 import classNames from 'classnames/bind';
 
-const GrowthViewer = ({ title, growth }) => {
+const GrowthViewer = ({ title, growth, recentValue, prevValue }) => {
   const cx = classNames.bind(styles);
   const growthStyles = cx({
     withSmallLineDivider: true,
@@ -14,7 +14,7 @@ const GrowthViewer = ({ title, growth }) => {
     <section className={styles.container}>
       <h6>{title}</h6>
       <p>Jul 26, 2019 - Aug 22, 2019</p>
-      <h1>47</h1>
+      <h1>{recentValue}</h1>
       <p>Jul 26, 2019 - Aug 22, 2019</p>
       <h3>41</h3>
       <div className={growthStyles}>

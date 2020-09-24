@@ -1,0 +1,18 @@
+@mixin indicator
+  content: ""
+  position: absolute
+  left: 35%
+  bottom: 0
+  height: 8px
+  width: 30%
+  border-radius: 5px
+
+.red
+  &:after
+    @include indicator
+    background: red
+
+.green
+  &:after
+    @include indicator
+    background: green

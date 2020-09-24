@@ -9,13 +9,14 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts';
+import GrowthViewer from './components/GrowthViewer';
 import data from './datasets/dataset1.json';
 
 function App() {
   return (
     <div className="container">
       <section className="wideContainer">
-        <h6>Customer Base</h6>
+        <h6 style={{ textAlign: 'left' }}>Customer Base</h6>
       </section>
       <section className="wideContainer">
         <h6>New vs. returning customers</h6>
@@ -24,8 +25,8 @@ function App() {
             data={data}
             margin={{
               top: 30,
-              right: 30,
-              left: -20,
+              right: 20,
+              left: -30,
               bottom: 5,
             }}
           >
@@ -33,17 +34,24 @@ function App() {
             <XAxis dataKey="name" />
             <YAxis axisLine={false} />
             <Tooltip />
-            <Line type="linear" dataKey="new_customers" stroke="#0060a9" />
-            <Line type="linear" dataKey="returning_customers" stroke="#009400" />
+            <Line
+              type="linear"
+              dataKey="new_customers"
+              stroke="#0060a9"
+              strokeWidth={2}
+            />
+
+            <Line
+              type="linear"
+              dataKey="returning_customers"
+              stroke="#009400"
+              strokeWidth={2}
+            />
           </LineChart>
         </ResponsiveContainer>
       </section>
-      <section className="narrowContainer">
-        <h6>New customers</h6>
-      </section>
-      <section className="narrowContainer">
-        <h6>Returning customers</h6>
-      </section>
+      <GrowthViewer title="New customers" growth={15.0} />
+      <GrowthViewer title="Returning customers" growth={-24.0} />
       <section className="narrowContainer">
         <h6>Re-order percentage</h6>
       </section>

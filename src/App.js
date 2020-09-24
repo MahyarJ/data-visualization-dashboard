@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from 'recharts';
 import GrowthViewer from './components/GrowthViewer';
+import PercentageViewer from './components/PercentageViewer';
 import data from './datasets/dataset1.json';
 
 function App() {
@@ -52,12 +53,23 @@ function App() {
       </section>
       <GrowthViewer title="New customers" growth={15.0} />
       <GrowthViewer title="Returning customers" growth={-24.0} />
-      <section className="narrowContainer">
-        <h6>Re-order percentage</h6>
-      </section>
-      <section className="narrowContainer">
-        <h6>Wolt rating</h6>
-      </section>
+      <PercentageViewer
+        title="Re-order percentage"
+        baseTitle="Re-order"
+        baseValue={144}
+        percentageTitle="Re-order percentage"
+        percentageValue="+75.00%"
+        description="The re-order percentage shows you the percentage of your current orders by
+        customers that have ordered before."
+      />
+      <PercentageViewer
+        title="Wolt rating"
+        baseTitle="Reviews"
+        baseValue={31}
+        percentageTitle="Rating"
+        percentageValue="4.77"
+        description="Wolt rating shows you how satisfied your customers are with their order experience."
+      />
     </div>
   );
 }

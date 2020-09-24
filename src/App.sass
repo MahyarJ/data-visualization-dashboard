@@ -9,7 +9,12 @@ section
 
 .wideContainer
   width: 100%
+  flex-flow: column wrap
 
 .narrowContainer
   width: 25%
   justify-content: center
+  flex-flow: row wrap
+
+  @media (max-width: 480px)
+    width: 100%

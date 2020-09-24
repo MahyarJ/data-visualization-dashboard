@@ -1,6 +1,5 @@
 import React from 'react';
-import '../App.sass';
-import './PercentageViewer.sass';
+import styles from './PercentageViewer.module.sass';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -18,13 +17,13 @@ const PercentageViewer = ({
   description,
 }) => {
   return (
-    <section className="narrowContainer">
+    <section className={styles.container}>
       <h6>{title}</h6>
-      <div className="base">
+      <div className={styles.base}>
         <p>{baseTitle}</p>
         <p style={{ color: 'black' }}>{baseValue}</p>
       </div>
-      <div className="chartContainer">
+      <div className={styles.chartContainer}>
         <ResponsiveContainer height={200} width="100%">
           <PieChart>
             <Pie
@@ -41,12 +40,12 @@ const PercentageViewer = ({
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <div className="label">
+        <div className={styles.label}>
           <p>{percentageTitle}</p>
           <h1>{percentageValue}</h1>
         </div>
       </div>
-      <p className="description">{description}</p>
+      <p className={styles.description}>{description}</p>
     </section>
   );
 };

@@ -1,3 +1,10 @@
+.container
+  position: relative
+  width: 25%
+
+  @media (max-width: 480px)
+    width: 100%
+
 .base
   display: flex
   flex-flow: row nowrap
@@ -6,21 +13,17 @@
   p
     padding: 5px
 
-.chartContainer
-  position: relative
-
 .label
   position: absolute
-  top: 70px
+  top: 130px
   left: 0
   width: 100%
   text-align: center
 
   p
-    padding: 0 25%
+    padding: 0 30%
     line-height: 12px
     height: 25px
-
 
 .description
   font-weight: 400

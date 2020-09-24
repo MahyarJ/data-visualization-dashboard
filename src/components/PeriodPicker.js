@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import styles from './PeriodPicker.module.sass';
-import classNames from 'classnames/bind';
 
 const PeriodPicker = ({ title, filters, selected, onSelect }) => {
   const [open, setOpen] = useState(false);
-  const cx = classNames.bind(styles);
 
   const handleSelect = (index) => {
     setOpen(false);

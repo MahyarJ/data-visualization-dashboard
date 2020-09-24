@@ -20,6 +20,23 @@ const App = () => {
       });
   }, [filter]);
 
+  const totalOrders = data.reduce((total, set) => {
+    return total + set.orders;
+  }, 0);
+
+  const totalReorders = data.reduce((total, set) => {
+    return total + set.reorders;
+  }, 0);
+
+  const totalRatings = data.reduce((total, set) => {
+    return total + set.rating_count;
+  }, 0);
+
+  const totalRatingsScore =
+    data.reduce((total, set) => {
+      return total + set.rating_count * (set.rating_score || 0);
+    }, 0) / (totalRatings || 1);
+
   return (
     <div className={styles.container}>
       <PeriodPicker
@@ -34,18 +51,23 @@ const App = () => {
       <PercentageViewer
         title="Re-order percentage"
         baseTitle="Re-order"
-        baseValue={144}
+        baseValue={totalReorders}
         percentageTitle="Re-order percentage"
-        percentageValue="+75.00%"
+        percentageValue={
+          (Math.round((totalReorders / (totalOrders || 1)) * 100) * 100) / 100
+        }
+        max={100}
+        showPercent={true}
         description="The re-order percentage shows you the percentage of your current orders by
         customers that have ordered before."
       />
       <PercentageViewer
         title="Wolt rating"
         baseTitle="Reviews"
-        baseValue={31}
+        baseValue={totalRatings}
         percentageTitle="Rating"
-        percentageValue="4.77"
+        percentageValue={Math.round(totalRatingsScore * 100) / 100}
+        max={5}
         description="Wolt rating shows you how satisfied your customers are with their order experience."
       />
     </div>

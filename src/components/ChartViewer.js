@@ -56,7 +56,13 @@ const ChartViewer = ({ data }) => {
             .filter((set) => visibles.includes(set.id))
             .map((set) => {
               return (
-                <Line type="linear" dataKey={set.id} stroke={set.color} strokeWidth={2} />
+                <Line
+                  key={`line-${set.id}`}
+                  type="linear"
+                  dataKey={set.id}
+                  stroke={set.color}
+                  strokeWidth={2}
+                />
               );
             })}
         </LineChart>
@@ -65,6 +71,7 @@ const ChartViewer = ({ data }) => {
         {dataSets.map((set) => {
           return (
             <div
+              key={`checkbox-${set.id}`}
               className={styles.checkbox}
               style={{
                 backgroundColor: visibles.includes(set.id) ? set.color : 'transparent',

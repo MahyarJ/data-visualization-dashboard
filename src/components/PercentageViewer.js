@@ -2,10 +2,6 @@ import React from 'react';
 import styles from './PercentageViewer.module.sass';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'Rated', value: 13 },
-  { name: 'NotRated', value: 13 - 10 },
-];
 const COLORS = ['#00b600', '#b8ffca'];
 
 const PercentageViewer = ({
@@ -14,8 +10,15 @@ const PercentageViewer = ({
   baseValue,
   percentageTitle,
   percentageValue,
+  max,
+  showPercent,
   description,
 }) => {
+  const data = [
+    { name: 'on', value: percentageValue },
+    { name: 'off', value: max - percentageValue },
+  ];
+
   return (
     <section className={styles.container}>
       <h6>{title}</h6>
@@ -33,9 +36,9 @@ const PercentageViewer = ({
               outerRadius={80}
               paddingAngle={1}
               startAngle={-270}
-              endAngle={-270 - 360}
+              endAngle={-630}
             >
-              {data.map((entry, index) => (
+              {data.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
@@ -43,7 +46,10 @@ const PercentageViewer = ({
         </ResponsiveContainer>
         <div className={styles.label}>
           <p>{percentageTitle}</p>
-          <h1>{percentageValue}</h1>
+          <h1>
+            {percentageValue}
+            {showPercent ? '%' : ''}
+          </h1>
         </div>
       </div>
       <p className={styles.description}>{description}</p>

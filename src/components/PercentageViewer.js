@@ -28,6 +28,7 @@ const PercentageViewer = ({
           <PieChart>
             <Pie
               data={data}
+              dataKey="value"
               innerRadius={70}
               outerRadius={80}
               paddingAngle={1}

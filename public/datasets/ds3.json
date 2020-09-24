@@ -1,0 +1,36 @@
+[
+    {
+        "basket_size": 17.0642931937173,
+        "currency": "EUR",
+        "customers": 147,
+        "first_orders": 47,
+        "new_customers": 47,
+        "new_customers_basket_size": 18.0170175438596,
+        "new_customers_rating_score": 4.69230769230769,
+        "orders": 191,
+        "rating_count": 31,
+        "rating_score": 4.7741935483871,
+        "reorders": 144,
+        "returning_customers": 100,
+        "returning_customers_basket_size": 16.6590298507463,
+        "returning_customers_rating_score": 4.83333333333333,
+        "time_received": 1564088400
+    },
+    {
+        "basket_size": 17.1263779527559,
+        "currency": "EUR",
+        "customers": 111,
+        "first_orders": 41,
+        "new_customers": 41,
+        "new_customers_basket_size": 19.560243902439,
+        "new_customers_rating_score": 4.375,
+        "orders": 127,
+        "rating_count": 26,
+        "rating_score": 4.61538461538461,
+        "reorders": 86,
+        "returning_customers": 70,
+        "returning_customers_basket_size": 15.9660465116279,
+        "returning_customers_rating_score": 4.72222222222222,
+        "time_received": 1561669200
+    }
+]

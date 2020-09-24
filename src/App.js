@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './App.module.sass';
+import PeriodPicker from './components/PeriodPicker';
 import ChartViewer from './components/ChartViewer';
 import GrowthViewer from './components/GrowthViewer';
 import PercentageViewer from './components/PercentageViewer';
-import data from './datasets/dataset1.json';
 
-function App() {
+const filters = ['By day', 'By week'];
+
+const App = () => {
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState(0);
+
+  useEffect(() => {
+    fetch(filter === 0 ? '/datasets/ds1.json' : '/datasets/ds4.json')
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        console.log(data);
+      });
+  }, [filter]);
+
   return (
     <div className={styles.container}>
-      <header>
-        <h6 style={{ textAlign: 'left' }}>Customer Base</h6>
-      </header>
+      <PeriodPicker
+        title="Customer Base"
+        filters={filters}
+        selected={filter}
+        onSelect={setFilter}
+      />
       <ChartViewer data={data} />
       <GrowthViewer title="New customers" growth={15.0} />
       <GrowthViewer title="Returning customers" growth={-24.0} />
@@ -33,6 +50,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
 export default App;

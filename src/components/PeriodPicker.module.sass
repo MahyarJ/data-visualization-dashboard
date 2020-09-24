@@ -1,0 +1,36 @@
+.container
+  width: 100%
+
+.selectorContainer
+  position: relative
+  display: flex
+  flex-flow: row wrap
+  justify-content: center
+  width: 150px
+  cursor: pointer
+
+  h6
+    padding: 0 4px
+    color: #0553a2
+
+.dropdown
+  position: absolute
+  background: white
+  border-radius: 4px
+  top: 30px
+  width: 150px
+  left: 0
+  padding: 10px
+  z-index: 100
+  box-shadow: 0 0.2rem 0.5rem rgba(103, 110, 144, 0.2), 0 2rem 2.5rem -1rem rgba(103, 110, 144, 0.3)
+  li
+    cursor: pointer
+    font-weight: bold
+    transition: .3s all
+    line-height: 36px
+
+    &:hover
+      color: #0553a2
+
+.selected
+  color: #0553a2

@@ -5,6 +5,7 @@
   margin: 0;
   scroll-behavior: smooth;
   outline: none;
+  color: #555555;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -16,4 +17,9 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h6 {
+  font-size: 12px;
+  line-height: 24px;
 }

@@ -4,20 +4,14 @@ import { filters } from '../constants';
 
 const useFetchData = (filter) => {
   const [data, setData] = useState([]);
+  const api = filter === filters.byDay ? '/datasets/ds1.json' : '/datasets/ds4.json';
 
   useEffect(() => {
-    if (filter === filters.byDay)
-      fetch('/datasets/ds1.json')
-        .then((response) => response.json())
-        .then((data) => {
-          setData(formatDataForChart(data, filter));
-        });
-    else
-      fetch('/datasets/ds4.json')
-        .then((response) => response.json())
-        .then((data) => {
-          setData(formatDataForChart(data, filter));
-        });
+    fetch(api)
+      .then((response) => response.json())
+      .then((data) => {
+        setData(formatDataForChart(data, filter));
+      });
   }, [filter]);
 
   return data;

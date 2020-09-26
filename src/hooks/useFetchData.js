@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
-import prepareForChart from '../helpers/prepareForChart';
+import formatDataForChart from '../helpers/formatDataForChart';
+import { filters } from '../constants';
 
 const useFetchData = (filter) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (filter === 'By day')
+    if (filter === filters.byDay)
       fetch('/datasets/ds1.json')
         .then((response) => response.json())
         .then((data) => {
-          setData(prepareForChart(data), 'By day');
+          setData(formatDataForChart(data, filter));
         });
     else
       fetch('/datasets/ds4.json')
         .then((response) => response.json())
         .then((data) => {
-          setData(prepareForChart(data), 'By week');
+          setData(formatDataForChart(data, filter));
         });
   }, [filter]);
 

@@ -6,11 +6,10 @@ import GrowthViewer from './components/GrowthViewer';
 import PercentageViewer from './components/PercentageViewer';
 import useFetchData from './hooks/useFetchData';
 import useFetchPrevData from './hooks/useFetchPrevData';
-
-const filters = ['By day', 'By week'];
+import { filters } from './constants';
 
 const App = () => {
-  const [filter, setFilter] = useState('By day');
+  const [filter, setFilter] = useState(filters.byDay);
   const data = useFetchData(filter);
   const [prev, recent] = useFetchPrevData(filter);
 

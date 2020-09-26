@@ -16,7 +16,8 @@ const PeriodPicker = ({ title, filters, selected, onSelect }) => {
         <h6>{selected}</h6>
         {open && (
           <ul className={styles.dropdown}>
-            {filters.map((filter, index) => {
+            {Object.keys(filters).map((key, index) => {
+              const filter = filters[key];
               return (
                 <li
                   className={filter === selected ? styles.selected : null}

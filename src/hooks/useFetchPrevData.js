@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { filters } from '../constants';
 
 const useFetchPrevData = (filter) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (filter === 'By day')
+    if (filter === filters.byDay)
       fetch('/datasets/ds3.json')
         .then((response) => response.json())
         .then((data) => {

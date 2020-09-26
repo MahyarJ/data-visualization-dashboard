@@ -4,48 +4,32 @@ import PeriodPicker from './components/PeriodPicker';
 import ChartViewer from './components/ChartViewer';
 import GrowthViewer from './components/GrowthViewer';
 import PercentageViewer from './components/PercentageViewer';
-import moment from 'moment';
+import prepareForChart from './helpers/prepareForChart';
 
 const filters = ['By day', 'By week'];
 
 const App = () => {
   const [data, setData] = useState([]);
   const [prevData, setPrevData] = useState([]);
-  const [filter, setFilter] = useState(0);
+  const [filter, setFilter] = useState('By day');
 
   useEffect(() => {
-    if (filter === 0)
+    if (filter === 'By day')
       fetch('/datasets/ds1.json')
         .then((response) => response.json())
         .then((data) => {
-          setData(
-            data.map((_, index) => {
-              const item = data[data.length - 1 - index];
-              return {
-                ...item,
-                label: moment(item.time_received * 1000).format('D'),
-              };
-            }),
-          );
+          setData(prepareForChart(data), 'By day');
         });
     else
       fetch('/datasets/ds4.json')
         .then((response) => response.json())
         .then((data) => {
-          setData(
-            data.map((_, index) => {
-              const item = data[data.length - 1 - index];
-              return {
-                ...item,
-                label: moment(item.time_received * 1000).week(),
-              };
-            }),
-          );
+          setData(prepareForChart(data), 'By week');
         });
   }, [filter]);
 
   useEffect(() => {
-    if (filter === 0)
+    if (filter === 'By day')
       fetch('/datasets/ds3.json')
         .then((response) => response.json())
         .then((data) => {

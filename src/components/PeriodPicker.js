@@ -4,24 +4,24 @@ import styles from './PeriodPicker.module.sass';
 const PeriodPicker = ({ title, filters, selected, onSelect }) => {
   const [open, setOpen] = useState(false);
 
-  const handleSelect = (index) => {
+  const handleSelect = (filter) => {
     setOpen(false);
-    onSelect(index);
+    onSelect(filter);
   };
 
   return (
     <header className={styles.container}>
       <h6 style={{ textAlign: 'left' }}>{title}</h6>
       <div className={styles.selectorContainer} onClick={() => setOpen(!open)}>
-        <h6>{filters[selected]}</h6>
+        <h6>{selected}</h6>
         {open && (
           <ul className={styles.dropdown}>
             {filters.map((filter, index) => {
               return (
                 <li
-                  className={index === selected ? styles.selected : null}
+                  className={filter === selected ? styles.selected : null}
                   key={index}
-                  onClick={() => handleSelect(index)}
+                  onClick={() => handleSelect(filter)}
                 >
                   {filter}
                 </li>

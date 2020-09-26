@@ -17,8 +17,69 @@
   &:after
     @include indicator
     background: red
+    background: linear-gradient(90deg, rgba(255,52,38,1) 0%, rgba(232,0,0,1) 100%)
 
 .green
   &:after
     @include indicator
     background: green
+    background: linear-gradient(90deg, rgba(0,195,0,1) 0%, rgba(0,146,0,1) 100%)
+
+.withSmallLineDivider
+  position: relative
+  margin: 10px 0
+  line-height: 40px
+  height: 70px
+
+  &:before
+    content: ""
+    position: absolute
+    left: 35%
+    top: 0
+    height: 1px
+    width: 30%
+    border-top: 1px solid #DDDDDD
+
+.withLongLineDivider
+  position: relative
+  margin-top: 10px
+  line-height: 40px
+
+  &:before
+    content: ""
+    position: absolute
+    left: 3%
+    top: 0
+    height: 1px
+    width: 94%
+    border-top: 1px solid #DDDDDD
+
+.basketSizeChangeGreen
+  color: green
+  &:before
+    content: ""
+    font-family: 'fontello'
+    color: green
+    font-size: 14px
+    padding: 0 5px
+    vertical-align: bottom
+
+.basketSizeChangeRed
+  color: red
+  &:before
+    content: ""
+    font-family: 'fontello'
+    color: red
+    font-size: 14px
+    padding: 0 5px
+    vertical-align: bottom
+
+.basketSizeChangeOrange
+  color: orange
+  &:before
+    content: ""
+    font-family: 'fontello'
+    color: orange
+    font-size: 14px
+    padding: 0 5px
+    vertical-align: bottom

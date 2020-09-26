@@ -11,6 +11,7 @@ const PercentageViewer = ({
   percentageTitle,
   percentageValue,
   max,
+  showSign,
   showPercent,
   description,
 }) => {
@@ -47,8 +48,10 @@ const PercentageViewer = ({
         <div className={styles.label}>
           <p>{percentageTitle}</p>
           <h1>
-            {percentageValue}
-            {showPercent ? '%' : ''}
+            {(showSign && percentageValue > 0 && '+') || (percentageValue < 0 && '-')}
+            {showPercent
+              ? `${Math.round(Math.abs(percentageValue)).toFixed(2)}%`
+              : `${Math.abs(percentageValue).toFixed(2)}`}
           </h1>
         </div>
       </div>

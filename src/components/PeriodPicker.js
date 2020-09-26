@@ -14,7 +14,6 @@ const PeriodPicker = ({ title, filters, selected, onSelect }) => {
       <h6 style={{ textAlign: 'left' }}>{title}</h6>
       <div className={styles.selectorContainer} onClick={() => setOpen(!open)}>
         <h6>{filters[selected]}</h6>
-        <h6 style={{ fontFamily: 'fontello' }}></h6>
         {open && (
           <ul className={styles.dropdown}>
             {filters.map((filter, index) => {

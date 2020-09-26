@@ -49,7 +49,7 @@ const ChartViewer = ({ data }) => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="day_recieved" />
+          <XAxis dataKey="label" />
           <YAxis axisLine={false} />
           <Tooltip />
           {dataSets

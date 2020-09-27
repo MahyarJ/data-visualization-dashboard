@@ -9,10 +9,10 @@ const PercentageViewer = ({
   baseTitle,
   baseValue,
   percentageTitle,
-  percentageValue,
-  max,
-  showSign,
-  showPercent,
+  percentageValue = 0,
+  max = 0,
+  showSign = false,
+  showPercent = false,
   description,
 }) => {
   const data = [

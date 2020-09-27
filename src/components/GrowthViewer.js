@@ -15,14 +15,14 @@ const formatPrevDate = (date) => {
 
 const GrowthViewer = ({
   title,
-  basketSize,
-  prevBasketSize,
+  basketSize = 1,
+  prevBasketSize = 1,
   recentPeriodStart,
   recentPeriodEnd,
-  recentValue,
+  recentValue = 1,
   prevPeriodStart,
   prevPeriodEnd,
-  prevValue,
+  prevValue = 1,
 }) => {
   const cx = classNames.bind(styles);
   const growth = ((recentValue - prevValue) * 100) / prevValue;
@@ -32,6 +32,13 @@ const GrowthViewer = ({
     green: growth > 0,
     red: growth <= 0,
   });
+
+  const basketSizeClassName =
+    basketSizeChange > 0
+      ? styles.basketSizeChangeGreen
+      : basketSizeChange < -5
+      ? styles.basketSizeChangeRed
+      : styles.basketSizeChangeOrange;
 
   return (
     <section className={styles.container}>
@@ -52,15 +59,7 @@ const GrowthViewer = ({
         <h6>Basket size</h6>
         <h1>{basketSize.toFixed(2)}€</h1>
       </div>
-      <p
-        className={
-          basketSizeChange > 0
-            ? styles.basketSizeChangeGreen
-            : basketSizeChange < -5
-            ? styles.basketSizeChangeRed
-            : styles.basketSizeChangeOrange
-        }
-      >
+      <p className={basketSizeClassName}>
         {(basketSizeChange > 0 && '+') || (basketSizeChange < 0 && '-')}
         {Math.round(Math.abs(basketSizeChange) * 10) / 10}%
       </p>

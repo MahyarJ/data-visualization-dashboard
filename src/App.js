@@ -30,8 +30,8 @@ const App = () => {
         prevPeriodStart={prev && prev.time_received * 1000}
         prevPeriodEnd={recent && recent.time_received * 1000}
         prevValue={prev && prev.new_customers}
-        basketSize={(recent && recent.new_customers_basket_size) || 0}
-        prevBasketSize={(prev && prev.new_customers_basket_size) || 0}
+        basketSize={recent && recent.new_customers_basket_size}
+        prevBasketSize={prev && prev.new_customers_basket_size}
       />
       <GrowthViewer
         title="Returning customers"
@@ -41,8 +41,8 @@ const App = () => {
         prevPeriodStart={prev && prev.time_received * 1000}
         prevPeriodEnd={prev && recent.time_received * 1000}
         prevValue={prev && prev.returning_customers}
-        basketSize={(recent && recent.returning_customers_basket_size) || 0}
-        prevBasketSize={(prev && prev.returning_customers_basket_size) || 0}
+        basketSize={recent && recent.returning_customers_basket_size}
+        prevBasketSize={prev && prev.returning_customers_basket_size}
       />
       <PercentageViewer
         title="Re-order percentage"
@@ -50,8 +50,7 @@ const App = () => {
         baseValue={prev && recent.reorders}
         percentageTitle="Re-order percentage"
         percentageValue={
-          (recent && Math.round((recent.reorders / (recent.orders || 1)) * 100) * 100) /
-          100
+          recent && Math.round((recent.reorders / (recent.orders || 1)) * 100)
         }
         max={100}
         showSign={true}

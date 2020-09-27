@@ -12,16 +12,21 @@ const PeriodPicker = ({ title, filters, selected, onSelect }) => {
   return (
     <header className={styles.container}>
       <h6 style={{ textAlign: 'left' }}>{title}</h6>
-      <div className={styles.selectorContainer} onClick={() => setOpen(!open)}>
-        <h6>{selected}</h6>
+      <div
+        data-testid="selectorContainer"
+        className={styles.selectorContainer}
+        onClick={() => setOpen(!open)}
+      >
+        <h6 data-testid="selectedViewer">{selected}</h6>
         {open && (
-          <ul className={styles.dropdown}>
+          <ul data-testid="dropdown" className={styles.dropdown}>
             {Object.keys(filters).map((key, index) => {
               const filter = filters[key];
               return (
                 <li
                   className={filter === selected ? styles.selected : null}
                   key={index}
+                  data-testid={`option-${index}`}
                   onClick={() => handleSelect(filter)}
                 >
                   {filter}

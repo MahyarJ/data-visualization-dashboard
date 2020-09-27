@@ -3,9 +3,9 @@ import { filters } from '../constants';
 
 const useFetchPrevData = (filter) => {
   const [data, setData] = useState([]);
-  const api = filter === filters.byDay ? '/datasets/ds3.json' : '/datasets/ds2.json';
 
   useEffect(() => {
+    const api = filter === filters.byDay ? '/datasets/ds3.json' : '/datasets/ds2.json';
     fetch(api)
       .then((response) => response.json())
       .then((data) => {

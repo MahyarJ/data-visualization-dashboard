@@ -9,6 +9,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts';
+import Checkbox from './Checkbox';
 import { uniq } from 'lodash';
 
 const dataSets = [
@@ -70,18 +71,14 @@ const ChartViewer = ({ data }) => {
       <div className={styles.checkboxContainer}>
         {dataSets.map((set) => {
           return (
-            <div
+            <Checkbox
               key={`checkbox-${set.id}`}
-              className={styles.checkbox}
-              style={{
-                backgroundColor: visibles.includes(set.id) ? set.color : 'transparent',
-                color: visibles.includes(set.id) ? 'white' : set.color,
-                borderColor: set.color,
-              }}
-              onClick={() => handleSelectVisibles(set.id)}
-            >
-              {set.title}
-            </div>
+              data-testid="checkbox"
+              label={set.title}
+              color={set.color}
+              isChecked={visibles.includes(set.id)}
+              onSelect={() => handleSelectVisibles(set.id)}
+            />
           );
         })}
       </div>

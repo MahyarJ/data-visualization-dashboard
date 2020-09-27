@@ -14,11 +14,11 @@
 
 - Make things responsive as much as we could, can leads every part of our users to check the reports and visualizations on any type of device and screen.
 
-## Quality
+## Code Quality
+
+- Using [Recharts](https://recharts.org/) components that fulfills UI needs in this amount of time, was the best choice for me as they perfectly works to match `D3` svg experiences and `React` rendering abilities.
 
 - I separate the components as much as they could make tests simpler and prevent complications.
-
-- Assigning proper `data-testid` to components can help us find the components among a bunch of others.
 
 - I tried to extract `reusable` custom hooks to make the inside component logic more simple and easy to understand.
 
@@ -28,7 +28,10 @@
 
 ## Test
 
+- Assigning proper `data-testid` to components can help us find the components among a bunch of others.
+
 - I tried to add some tests to show in a production-ready code-base and modules, we have to be fully proofed with appropriate tests and simplifying the code-review and merge flows.
+
 - In real-world projects, I prefer to add more challenging unit tests, integration, and e2e testing to make more robust working software.
 
 ## Available Scripts

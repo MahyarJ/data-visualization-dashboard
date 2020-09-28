@@ -2,9 +2,9 @@
 
 > Technical Aspects - by Mahyar Jamalabadi
 
-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).- The project is available on my [Github](https://github.com/MahyarJ/data-visualization-dashboard).- The project UI is also available on [Netlify](https://dv-dashboard.netlify.app//).
-
 ## How to start
+
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
 - In the project directory run `yarn` to install dependencies, and after that, you can use
   `yarn start`
@@ -38,6 +38,8 @@
 
 - Also extracting helper functions as `helpers` could make things cleaner and also help us to separately test the helper functions themselves.
 
+- As I mentioned in some comments in code, in a real project we should take more actions around `A11Y` and computer accessibility considerations and component implementations.
+
 - Handling loading state in components and appropriate default values for props are too important to implement. Also, handling `loading` and `error` return values in hooks can lead us to a better status handling.
 
   > **ProTip:** Handling a loading state with a `Loading` component can make a better UX. As the APIs are local, you can slow down your network, using `dev-tools` to see the result. In real-world APIs, these loadings happen a million times.
@@ -49,9 +51,3 @@
 - I tried to add some tests to show in a production-ready code-base and modules, we have to be fully proofed with appropriate tests and simplifying the code-review and merge flows.
 
 - In real-world projects, I prefer to add more challenging unit tests, integration, and e2e testing to make more robust working software.
-
-## Future Considerations
-
-- In real and bigger projects with reasonable timing, I try to add more tests, especially `integration tests` to make sure of what is happening during complicated renderings.
-
-- As I mentioned in some comments in code, in a real project we should take more actions around `A11Y` and computer accessibility considerations and component implementations.

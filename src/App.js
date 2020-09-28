@@ -8,22 +8,22 @@ import useFetchData from './hooks/useFetchData';
 import useFetchPrevData from './hooks/useFetchPrevData';
 import { filters, currency, dataSets } from './constants';
 
+const filtersArr = [filters.BY_DAY, filters.BY_WEEK];
+
 const App = () => {
-  const [filter, setFilter] = useState(filters.BY_DAY);
-  const { data, loading } = useFetchData(filter);
+  const [filter, setFilter] = useState(0);
+  const { data, loading } = useFetchData(filtersArr[filter]);
   const {
     data: [prev, recent],
     loading: prevLoading,
-  } = useFetchPrevData(filter);
-
-  console.log([filters.BY_DAY, filters.BY_WEEK]);
+  } = useFetchPrevData(filtersArr[filter]);
 
   return (
     <div className={styles.container}>
       <PeriodPicker
         title="Customer Base"
-        filters={[filters.BY_DAY, filters.BY_WEEK]}
-        selected={filter}
+        filters={filtersArr}
+        selectedIndex={filter}
         onSelect={setFilter}
       />
       <ChartViewer

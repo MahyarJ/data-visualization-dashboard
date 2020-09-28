@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import PeriodPicker from './PeriodPicker';
 import { filters } from '../constants';
-import { queryByTestId, waitFor } from '@testing-library/dom';
+import { queryByTestId } from '@testing-library/dom';
 
 describe('PeriodPicker', () => {
   const filtersArr = [filters.BY_DAY, filters.BY_WEEK];
@@ -14,20 +14,22 @@ describe('PeriodPicker', () => {
   });
 
   it('renders selected value viewer component on mount', () => {
-    const { getByTestId } = render(<PeriodPicker selected="default selected" />);
+    const { getByTestId } = render(
+      <PeriodPicker selectedIndex={0} filters={filtersArr} />,
+    );
     const selectedViewerElement = getByTestId('selectedViewer');
     expect(selectedViewerElement).toBeInTheDocument();
   });
 
   it('renders default-selected string as the value on mount', () => {
-    const { getByText } = render(<PeriodPicker selected="default selected" />);
-    const selectedViewerElement = getByText('default selected');
+    const { getByText } = render(<PeriodPicker selectedIndex={0} filters={filtersArr} />);
+    const selectedViewerElement = getByText(filtersArr[0]);
     expect(selectedViewerElement).toBeInTheDocument();
   });
 
   it('renders drop-down menu on click ', async () => {
     const { getByTestId } = render(
-      <PeriodPicker selected="default selected" filters={filtersArr} />,
+      <PeriodPicker selectedIndex={0} filters={filtersArr} />,
     );
     const selectedViewerElement = getByTestId('selectedViewer');
 
@@ -38,7 +40,7 @@ describe('PeriodPicker', () => {
 
   it('closes the dropdown on dropdown click', async () => {
     const { getByTestId } = render(
-      <PeriodPicker selected="default selected" filters={filtersArr} />,
+      <PeriodPicker selectedIndex={0} filters={filtersArr} />,
     );
     const selectorContainer = getByTestId('selectorContainer');
     const selectedViewerElement = getByTestId('selectedViewer');
@@ -51,7 +53,7 @@ describe('PeriodPicker', () => {
 
   it('renders option as fitlers prop length ', async () => {
     const { getByTestId } = render(
-      <PeriodPicker selected="default selected" filters={filtersArr} />,
+      <PeriodPicker selectedIndex={0} filters={filtersArr} />,
     );
     const container = getByTestId('selectorContainer');
     fireEvent.click(container);

@@ -8,7 +8,7 @@ const useFetchPrevData = (filter) => {
 
   useEffect(() => {
     setLoading(true);
-    const api = filter === filters.byDay ? '/datasets/ds3.json' : '/datasets/ds2.json';
+    const api = filter === filters.BY_DAY ? '/datasets/ds3.json' : '/datasets/ds2.json';
     fetch(api)
       .then((response) => response.json())
       .then((data) => {

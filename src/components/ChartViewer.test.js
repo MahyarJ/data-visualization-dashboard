@@ -1,9 +1,17 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import PercentageViewer from './PercentageViewer';
+import { render } from '@testing-library/react';
+import ChartViewer from './ChartViewer';
+import { dataSets } from '../constants';
 
-test('renders title correctly', () => {
-  const { getByText } = render(<PercentageViewer title="Foo" />);
-  const titleElement = getByText('Foo');
-  expect(titleElement).toBeInTheDocument();
+describe('ChartViewer', () => {
+  it('renders title correctly', () => {
+    const { getByText } = render(<ChartViewer title="Foo" dataSets={dataSets} />);
+    const titleElement = getByText('Foo');
+    expect(titleElement).toBeInTheDocument();
+  });
+
+  it('renders Checkbox as data-set length on mount', () => {
+    const { getByTestId } = render(<ChartViewer title="Foo" dataSets={dataSets} />);
+    expect(getByTestId('checkboxContainer').children.length).toEqual(2);
+  });
 });

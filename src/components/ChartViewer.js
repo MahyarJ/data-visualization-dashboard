@@ -13,20 +13,7 @@ import Checkbox from './Checkbox';
 import Loading from './Loading';
 import { uniq } from 'lodash';
 
-const dataSets = [
-  {
-    id: 'new_customers',
-    title: 'New customers',
-    color: '#0060a9',
-  },
-  {
-    id: 'returning_customers',
-    title: 'Returning customers',
-    color: '#009400',
-  },
-];
-
-const ChartViewer = ({ data, title, loading = false }) => {
+const ChartViewer = ({ data, dataSets = [], title, loading = false }) => {
   const [visibles, setVisibles] = useState(dataSets.map((set) => set.id));
 
   const handleSelectVisibles = (id) => {
@@ -38,7 +25,7 @@ const ChartViewer = ({ data, title, loading = false }) => {
   };
 
   return (
-    <section className={styles.container}>
+    <section data-testid="chartContainer" className={styles.container}>
       <h6>{title}</h6>
 
       <ResponsiveContainer height={300} width="100%">
@@ -60,10 +47,11 @@ const ChartViewer = ({ data, title, loading = false }) => {
             <Tooltip />
             {dataSets
               .filter((set) => visibles.includes(set.id))
-              .map((set) => {
+              .map((set, index) => {
                 return (
                   <Line
                     key={`line-${set.id}`}
+                    id={`line-${index}`}
                     type="linear"
                     dataKey={set.id}
                     stroke={set.color}
@@ -74,12 +62,12 @@ const ChartViewer = ({ data, title, loading = false }) => {
           </LineChart>
         )}
       </ResponsiveContainer>
-      <div className={styles.checkboxContainer}>
-        {dataSets.map((set) => {
+      <div data-testid="checkboxContainer" className={styles.checkboxContainer}>
+        {dataSets.map((set, index) => {
           return (
             <Checkbox
               key={`checkbox-${set.id}`}
-              data-testid="checkbox"
+              dataTestid={`checkbox-${index}`}
               label={set.title}
               color={set.color}
               isChecked={visibles.includes(set.id)}

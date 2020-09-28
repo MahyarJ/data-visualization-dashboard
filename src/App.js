@@ -6,26 +6,32 @@ import GrowthViewer from './components/GrowthViewer';
 import PercentageViewer from './components/PercentageViewer';
 import useFetchData from './hooks/useFetchData';
 import useFetchPrevData from './hooks/useFetchPrevData';
-import { filters, currency } from './constants';
+import { filters, currency, dataSets } from './constants';
 
 const App = () => {
-  const [filter, setFilter] = useState(filters.byDay);
-  const { data, loading, error } = useFetchData(filter);
+  const [filter, setFilter] = useState(filters.BY_DAY);
+  const { data, loading } = useFetchData(filter);
   const {
     data: [prev, recent],
     loading: prevLoading,
-    error: prevError,
   } = useFetchPrevData(filter);
+
+  console.log([filters.BY_DAY, filters.BY_WEEK]);
 
   return (
     <div className={styles.container}>
       <PeriodPicker
         title="Customer Base"
-        filters={filters}
+        filters={[filters.BY_DAY, filters.BY_WEEK]}
         selected={filter}
         onSelect={setFilter}
       />
-      <ChartViewer loading={loading} title="New vs. returning customers" data={data} />
+      <ChartViewer
+        loading={loading}
+        title="New vs. returning customers"
+        data={data}
+        dataSets={dataSets}
+      />
       <GrowthViewer
         loading={prevLoading}
         title="New customers"

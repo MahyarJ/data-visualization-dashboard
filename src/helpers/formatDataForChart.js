@@ -7,7 +7,7 @@ const formatDataForChart = (data, filter) => {
     const time = moment(item.time_received * 1000);
     return {
       ...item,
-      label: filter === filters.byDay ? time.format('D') : time.week(),
+      label: filter === filters.BY_DAY ? time.format('D') : time.week(),
     };
   });
 };

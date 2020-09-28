@@ -21,4 +21,6 @@ const dataSets = [
   },
 ];
 
-export { filters, currency, dataSets };
+const dateFormat = 'MMM DD, YYYY';
+
+export { filters, currency, dataSets, dateFormat };

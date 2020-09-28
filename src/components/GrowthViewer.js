@@ -3,13 +3,17 @@ import styles from './GrowthViewer.module.sass';
 import Loading from './Loading';
 import classNames from 'classnames/bind';
 import moment from 'moment';
+import { dateFormat } from '../constants';
 
 const formatDate = (date) => {
-  return moment(date).format('DD MMMM, YYYY');
+  return moment(date).format(dateFormat);
 };
 
 const formatPrevDate = (date) => {
-  return moment(date).subtract('1', 'day').format('DD MMMM, YYYY');
+  // For preventing overlapping in visualization
+  // we have to show the previous period ends
+  // before recent period starts
+  return moment(date).subtract('1', 'day').format(dateFormat);
 };
 
 const GrowthViewer = ({

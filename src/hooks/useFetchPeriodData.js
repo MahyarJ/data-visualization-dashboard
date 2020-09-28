@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
-import formatDataForChart from '../helpers/formatDataForChart';
 import { filters } from '../constants';
 
-const useFetchData = (filter) => {
+const useFetchPeriodData = (filter) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
-    const api = filter === filters.BY_DAY ? '/datasets/ds1.json' : '/datasets/ds4.json';
+    const api = filter === filters.BY_DAY ? '/datasets/ds3.json' : '/datasets/ds2.json';
     fetch(api)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        setData(formatDataForChart(data, filter));
+        setData(data.map((_, index) => data[data.length - 1 - index]));
       })
       .catch((error) => {
         setLoading(false);
@@ -25,4 +24,4 @@ const useFetchData = (filter) => {
   return { data, loading, error };
 };
 
-export default useFetchData;
+export default useFetchPeriodData;

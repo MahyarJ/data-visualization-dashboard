@@ -4,19 +4,19 @@ import PeriodPicker from './components/PeriodPicker';
 import ChartViewer from './components/ChartViewer';
 import GrowthViewer from './components/GrowthViewer';
 import PercentageViewer from './components/PercentageViewer';
-import useFetchData from './hooks/useFetchData';
-import useFetchPrevData from './hooks/useFetchPrevData';
+import useFetchChartData from './hooks/useFetchChartData';
+import useFetchPeriodData from './hooks/useFetchPeriodData';
 import { filters, currency, dataSets } from './constants';
 
 const filtersArr = [filters.BY_DAY, filters.BY_WEEK];
 
 const App = () => {
   const [filter, setFilter] = useState(0);
-  const { data, loading } = useFetchData(filtersArr[filter]);
+  const { data, loading } = useFetchChartData(filtersArr[filter]);
   const {
     data: [prev, recent],
-    loading: prevLoading,
-  } = useFetchPrevData(filtersArr[filter]);
+    loading: periodLoading,
+  } = useFetchPeriodData(filtersArr[filter]);
 
   return (
     <div className={styles.container}>
@@ -33,10 +33,19 @@ const App = () => {
         dataSets={dataSets}
       />
       <GrowthViewer
-        loading={prevLoading}
+        loading={periodLoading}
         title="New customers"
         recentPeriodStart={data[0] && data[0].time_received * 1000}
-        recentPeriodEnd={data[0] && data[data.length - 1].time_received * 1000}
+        recentPeriodEnd={
+          data[0] &&
+          (filter
+            ? // If we select week period, so
+              // calculates the end of the week from the begin date
+              (data[data.length - 1].time_received + 6 * 24 * 3600) * 1000
+            : // else we selected day, so
+              // calculates that day
+              data[data.length - 1].time_received * 1000)
+        }
         recentValue={recent && recent.new_customers}
         prevPeriodStart={prev && prev.time_received * 1000}
         prevPeriodEnd={recent && recent.time_received * 1000}
@@ -46,10 +55,19 @@ const App = () => {
         currency={prev && currency[prev.currency]}
       />
       <GrowthViewer
-        loading={prevLoading}
+        loading={periodLoading}
         title="Returning customers"
         recentPeriodStart={data[0] && data[0].time_received * 1000}
-        recentPeriodEnd={data[0] && data[data.length - 1].time_received * 1000}
+        recentPeriodEnd={
+          data[0] &&
+          (filter
+            ? // If we select week period, so
+              // calculates the end of the week from the begin date
+              (data[data.length - 1].time_received + 6 * 24 * 3600) * 1000
+            : // else we selected day, so
+              // calculates that day
+              data[data.length - 1].time_received * 1000)
+        }
         recentValue={recent && recent.returning_customers}
         prevPeriodStart={prev && prev.time_received * 1000}
         prevPeriodEnd={prev && recent.time_received * 1000}
@@ -59,7 +77,7 @@ const App = () => {
         currency={prev && currency[prev.currency]}
       />
       <PercentageViewer
-        loading={prevLoading}
+        loading={periodLoading}
         title="Re-order percentage"
         baseTitle="Re-order"
         baseValue={prev && recent.reorders}
@@ -74,7 +92,7 @@ const App = () => {
         customers that have ordered before."
       />
       <PercentageViewer
-        loading={prevLoading}
+        loading={periodLoading}
         title="Wolt rating"
         baseTitle="Reviews"
         baseValue={recent && recent.rating_count}

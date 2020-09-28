@@ -4,6 +4,18 @@
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).- The project is available on my [Github](https://github.com/MahyarJ/data-visualization-dashboard).- The project UI is also available on [Netlify](https://dv-dashboard.netlify.app//).
 
+## How to start
+
+- In the project directory run `yarn` to install dependencies, and after that, you can use
+  `yarn start`
+  to run the app in the development mode.
+
+- Also, you can use the `yarn test` script to run tests of the project.
+
+- The page will reload if you make edits.
+  You will also see any lint errors in the console.
+  Other scripts are the same as `create-react-app` documentation.
+
 ## Design
 
 - I put a good effort to fulfill the entire design mockups to make everything deployable right out of the box. Be Pixel-Perfect!
@@ -38,14 +50,8 @@
 
 - In real-world projects, I prefer to add more challenging unit tests, integration, and e2e testing to make more robust working software.
 
-## Available Scripts
+## Future Considerations
 
-In the project directory run `yarn` to install dependencies, and after that, you can use
-`yarn start`
-to run the app in the development mode.
+- In real and bigger projects with reasonable timing, I try to add more tests, especially `integration tests` to make sure of what is happening during complicated renderings.
 
-Also, you can use the `yarn test` script to run tests of the project.
-
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-Other scripts are the same as `create-react-app` documentation.
+- As I mentioned in some comments in code, in a real project we should take more actions around `A11Y` and computer accessibility considerations and component implementations.

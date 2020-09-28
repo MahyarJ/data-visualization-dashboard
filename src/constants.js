@@ -3,4 +3,9 @@ const filters = {
   byWeek: 'By week',
 };
 
-export { filters };
+const currency = {
+  EUR: '€',
+  DOL: '$',
+};
+
+export { filters, currency };

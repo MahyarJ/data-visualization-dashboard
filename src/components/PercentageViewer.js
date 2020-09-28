@@ -25,7 +25,7 @@ const PercentageViewer = ({
       <h6>{title}</h6>
       <div className={styles.base}>
         <p>{baseTitle}</p>
-        <p style={{ color: 'black' }}>{baseValue}</p>
+        <p className={styles.baseValue}>{baseValue}</p>
       </div>
       <ResponsiveContainer height={200} width="100%">
         <PieChart>

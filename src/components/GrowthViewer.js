@@ -23,6 +23,7 @@ const GrowthViewer = ({
   prevPeriodStart,
   prevPeriodEnd,
   prevValue = 1,
+  currency,
 }) => {
   const cx = classNames.bind(styles);
   const growth = ((recentValue - prevValue) * 100) / prevValue;
@@ -57,7 +58,10 @@ const GrowthViewer = ({
       </div>
       <div className={styles.withLongLineDivider}>
         <h6>Basket size</h6>
-        <h1>{basketSize.toFixed(2)}€</h1>
+        <h1>
+          {basketSize.toFixed(2)}
+          {currency}
+        </h1>
       </div>
       <p className={basketSizeClassName}>
         {(basketSizeChange > 0 && '+') || (basketSizeChange < 0 && '-')}

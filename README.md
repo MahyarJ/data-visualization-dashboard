@@ -16,7 +16,7 @@
 
 ## Code Quality
 
-- Using [Recharts](https://recharts.org/) components that fulfills UI needs in this amount of time, was the best choice for me as they perfectly works to match `D3` svg experiences and `React` rendering abilities.
+- Using [Recharts](https://recharts.org/) components that fulfill UI needs in this amount of time, was the best choice for me as they perfectly work to match `D3` SVG experiences and `React` rendering abilities. Also, I think we better _don't reinvent the wheel_ as much as we can. But as we needed to be more flexible in huge projects we can use libraries like `D3`.
 
 - I separate the components as much as they could make tests simpler and prevent complications.
 
@@ -36,9 +36,11 @@
 
 ## Available Scripts
 
-In the project directory, you can use
+In the project directory run `yarn` to install dependencies, and after that, you can use
 `yarn start`
 to run the app in the development mode.
+
+Also, you can use the `yarn test` script to run tests of the project.
 
 The page will reload if you make edits.
 You will also see any lint errors in the console.

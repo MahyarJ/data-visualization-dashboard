@@ -6,7 +6,7 @@ import GrowthViewer from './components/GrowthViewer';
 import PercentageViewer from './components/PercentageViewer';
 import useFetchData from './hooks/useFetchData';
 import useFetchPrevData from './hooks/useFetchPrevData';
-import { filters } from './constants';
+import { filters, currency } from './constants';
 
 const App = () => {
   const [filter, setFilter] = useState(filters.byDay);
@@ -21,7 +21,7 @@ const App = () => {
         selected={filter}
         onSelect={setFilter}
       />
-      <ChartViewer data={data} />
+      <ChartViewer title="New vs. returning customers" data={data} />
       <GrowthViewer
         title="New customers"
         recentPeriodStart={data[0] && data[0].time_received * 1000}
@@ -32,6 +32,7 @@ const App = () => {
         prevValue={prev && prev.new_customers}
         basketSize={recent && recent.new_customers_basket_size}
         prevBasketSize={prev && prev.new_customers_basket_size}
+        currency={prev && currency[prev.currency]}
       />
       <GrowthViewer
         title="Returning customers"
@@ -43,6 +44,7 @@ const App = () => {
         prevValue={prev && prev.returning_customers}
         basketSize={recent && recent.returning_customers_basket_size}
         prevBasketSize={prev && prev.returning_customers_basket_size}
+        currency={prev && currency[prev.currency]}
       />
       <PercentageViewer
         title="Re-order percentage"

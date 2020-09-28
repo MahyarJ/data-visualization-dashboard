@@ -25,7 +25,7 @@ const dataSets = [
   },
 ];
 
-const ChartViewer = ({ data }) => {
+const ChartViewer = ({ data, title }) => {
   const [visibles, setVisibles] = useState(dataSets.map((set) => set.id));
 
   const handleSelectVisibles = (id) => {
@@ -38,7 +38,7 @@ const ChartViewer = ({ data }) => {
 
   return (
     <section className={styles.container}>
-      <h6>New vs. returning customers</h6>
+      <h6>{title}</h6>
       <ResponsiveContainer height={300} width="100%">
         <LineChart
           data={data}

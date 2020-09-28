@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import PercentageViewer from './PercentageViewer';
 
 test('renders title correctly', () => {
@@ -8,5 +8,14 @@ test('renders title correctly', () => {
   expect(titleElement).toBeInTheDocument();
 });
 
-test('do not renders % when showPercent is false', () => {});
-test('renders % when showPercent is true', () => {});
+test('do not renders % when showPercent is false', () => {
+  const { queryByText } = render(<PercentageViewer title="Wolt rating" />);
+  expect(queryByText(/%/i)).toBeNull();
+});
+
+test('renders % when showPercent is true', () => {
+  const { queryByText } = render(
+    <PercentageViewer title="Wolt rating" showPercent={true} />,
+  );
+  expect(queryByText(/%/i)).toBeTruthy();
+});

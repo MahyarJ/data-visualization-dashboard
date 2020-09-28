@@ -29,6 +29,12 @@
       "css": "up-dir",
       "code": 59395,
       "src": "entypo"
+    },
+    {
+      "uid": "72109d2fb3088d0e66ea6a9204297651",
+      "css": "spin1",
+      "code": 59440,
+      "src": "fontelico"
     }
   ]
 }

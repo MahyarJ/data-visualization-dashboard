@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from 'recharts';
 import Checkbox from './Checkbox';
+import Loading from './Loading';
 import { uniq } from 'lodash';
 
 const dataSets = [
@@ -25,7 +26,7 @@ const dataSets = [
   },
 ];
 
-const ChartViewer = ({ data, title }) => {
+const ChartViewer = ({ data, title, loading = false }) => {
   const [visibles, setVisibles] = useState(dataSets.map((set) => set.id));
 
   const handleSelectVisibles = (id) => {
@@ -39,34 +40,39 @@ const ChartViewer = ({ data, title }) => {
   return (
     <section className={styles.container}>
       <h6>{title}</h6>
+
       <ResponsiveContainer height={300} width="100%">
-        <LineChart
-          data={data}
-          margin={{
-            top: 30,
-            right: 20,
-            left: -30,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="label" />
-          <YAxis axisLine={false} />
-          <Tooltip />
-          {dataSets
-            .filter((set) => visibles.includes(set.id))
-            .map((set) => {
-              return (
-                <Line
-                  key={`line-${set.id}`}
-                  type="linear"
-                  dataKey={set.id}
-                  stroke={set.color}
-                  strokeWidth={2}
-                />
-              );
-            })}
-        </LineChart>
+        {loading ? (
+          <Loading />
+        ) : (
+          <LineChart
+            data={data}
+            margin={{
+              top: 30,
+              right: 20,
+              left: -30,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+            <XAxis dataKey="label" />
+            <YAxis axisLine={false} />
+            <Tooltip />
+            {dataSets
+              .filter((set) => visibles.includes(set.id))
+              .map((set) => {
+                return (
+                  <Line
+                    key={`line-${set.id}`}
+                    type="linear"
+                    dataKey={set.id}
+                    stroke={set.color}
+                    strokeWidth={2}
+                  />
+                );
+              })}
+          </LineChart>
+        )}
       </ResponsiveContainer>
       <div className={styles.checkboxContainer}>
         {dataSets.map((set) => {

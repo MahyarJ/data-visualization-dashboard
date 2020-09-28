@@ -3,17 +3,25 @@ import { filters } from '../constants';
 
 const useFetchPrevData = (filter) => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     const api = filter === filters.byDay ? '/datasets/ds3.json' : '/datasets/ds2.json';
     fetch(api)
       .then((response) => response.json())
       .then((data) => {
+        setLoading(false);
         setData(data.map((_, index) => data[data.length - 1 - index]));
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(error);
       });
   }, [filter]);
 
-  return data;
+  return { data, loading, error };
 };
 
 export default useFetchPrevData;

@@ -10,8 +10,12 @@ import { filters, currency } from './constants';
 
 const App = () => {
   const [filter, setFilter] = useState(filters.byDay);
-  const data = useFetchData(filter);
-  const [prev, recent] = useFetchPrevData(filter);
+  const { data, loading, error } = useFetchData(filter);
+  const {
+    data: [prev, recent],
+    loading: prevLoading,
+    error: prevError,
+  } = useFetchPrevData(filter);
 
   return (
     <div className={styles.container}>
@@ -21,8 +25,9 @@ const App = () => {
         selected={filter}
         onSelect={setFilter}
       />
-      <ChartViewer title="New vs. returning customers" data={data} />
+      <ChartViewer loading={loading} title="New vs. returning customers" data={data} />
       <GrowthViewer
+        loading={prevLoading}
         title="New customers"
         recentPeriodStart={data[0] && data[0].time_received * 1000}
         recentPeriodEnd={data[0] && data[data.length - 1].time_received * 1000}
@@ -35,6 +40,7 @@ const App = () => {
         currency={prev && currency[prev.currency]}
       />
       <GrowthViewer
+        loading={prevLoading}
         title="Returning customers"
         recentPeriodStart={data[0] && data[0].time_received * 1000}
         recentPeriodEnd={data[0] && data[data.length - 1].time_received * 1000}
@@ -47,6 +53,7 @@ const App = () => {
         currency={prev && currency[prev.currency]}
       />
       <PercentageViewer
+        loading={prevLoading}
         title="Re-order percentage"
         baseTitle="Re-order"
         baseValue={prev && recent.reorders}
@@ -61,6 +68,7 @@ const App = () => {
         customers that have ordered before."
       />
       <PercentageViewer
+        loading={prevLoading}
         title="Wolt rating"
         baseTitle="Reviews"
         baseValue={recent && recent.rating_count}

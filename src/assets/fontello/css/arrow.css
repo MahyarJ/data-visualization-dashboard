@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'arrow';
-  src: url('../font/arrow.eot?37535492');
-  src: url('../font/arrow.eot?37535492#iefix') format('embedded-opentype'),
-       url('../font/arrow.woff2?37535492') format('woff2'),
-       url('../font/arrow.woff?37535492') format('woff'),
-       url('../font/arrow.ttf?37535492') format('truetype'),
-       url('../font/arrow.svg?37535492#arrow') format('svg');
+  src: url('../font/arrow.eot?27693192');
+  src: url('../font/arrow.eot?27693192#iefix') format('embedded-opentype'),
+       url('../font/arrow.woff2?27693192') format('woff2'),
+       url('../font/arrow.woff?27693192') format('woff'),
+       url('../font/arrow.ttf?27693192') format('truetype'),
+       url('../font/arrow.svg?27693192#arrow') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'arrow';
-    src: url('../font/arrow.svg?37535492#arrow') format('svg');
+    src: url('../font/arrow.svg?27693192#arrow') format('svg');
   }
 }
 */
@@ -59,3 +59,4 @@
 .icon-down-dir:before { content: '\e801'; } /* '' */
 .icon-right-dir:before { content: '\e802'; } /* '' */
 .icon-up-dir:before { content: '\e803'; } /* '' */
+.icon-spin1:before { content: '\e830'; } /* '' */

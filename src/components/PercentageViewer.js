@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './PercentageViewer.module.sass';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import Loading from './Loading';
 
 const COLORS = ['#00b600', '#b8ffca'];
 
@@ -14,6 +15,7 @@ const PercentageViewer = ({
   showSign = false,
   showPercent = false,
   description,
+  loading = false,
 }) => {
   const data = [
     { name: 'on', value: percentageValue },
@@ -23,10 +25,12 @@ const PercentageViewer = ({
   return (
     <section className={styles.container}>
       <h6>{title}</h6>
-      <div className={styles.base}>
-        <p>{baseTitle}</p>
-        <p className={styles.baseValue}>{baseValue}</p>
-      </div>
+      {!loading && (
+        <div className={styles.base}>
+          <p>{baseTitle}</p>
+          <p className={styles.baseValue}>{baseValue}</p>
+        </div>
+      )}
       <ResponsiveContainer height={200} width="100%">
         <PieChart>
           <Pie
@@ -46,12 +50,16 @@ const PercentageViewer = ({
       </ResponsiveContainer>
       <div className={styles.label}>
         <p>{percentageTitle}</p>
-        <h1>
-          {(showSign && percentageValue > 0 && '+') || (percentageValue < 0 && '-')}
-          {showPercent
-            ? `${Math.round(Math.abs(percentageValue)).toFixed(2)}%`
-            : `${Math.abs(percentageValue).toFixed(2)}`}
-        </h1>
+        {loading ? (
+          <Loading />
+        ) : (
+          <h1>
+            {(showSign && percentageValue > 0 && '+') || (percentageValue < 0 && '-')}
+            {showPercent
+              ? `${Math.round(Math.abs(percentageValue)).toFixed(2)}%`
+              : `${Math.abs(percentageValue).toFixed(2)}`}
+          </h1>
+        )}
       </div>
       <p className={styles.description}>{description}</p>
     </section>

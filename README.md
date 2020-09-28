@@ -14,6 +14,8 @@
 
 - Make things responsive as much as we could, can leads every part of our users to check the reports and visualizations on any type of device and screen.
 
+  > **ProTip:** The PeriodPicker is a component that its changing can affect all over the dashboard. So, as we try to prepare a responsive behavior in handheld devices, it's better to be `sticky` at top of the app screen to be available within vertical scrolls.
+
 ## Code Quality
 
 - Using [Recharts](https://recharts.org/) components that fulfill UI needs in this amount of time, was the best choice for me as they perfectly work to match `D3` SVG experiences and `React` rendering abilities. Also, I think we better _don't reinvent the wheel_ as much as we can. But as we needed to be more flexible in huge projects we can use libraries like `D3`.
@@ -25,6 +27,8 @@
 - Also extracting helper functions as `helpers` could make things cleaner and also help us to separately test the helper functions themselves.
 
 - Handling loading state in components and appropriate default values for props are too important to implement. Also, handling `loading` and `error` return values in hooks can lead us to a better status handling.
+
+  > **ProTip:** Handling a loading state with a `Loading` component can make a better UX. As the APIs are local, you can slow down your network, using `dev-tools` to see the result. In real-world APIs, these loadings happen a million times.
 
 ## Test
 
